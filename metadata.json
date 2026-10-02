@@ -1,0 +1,6 @@
+{
+  "name": "Wear & Care — Minimalist Sustainable Apparel",
+  "description": "Earth-first luxury apparel crafted from circular raw materials. Featuring an integrated size guide, transparent ecological impact, and lifetime garment care.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
