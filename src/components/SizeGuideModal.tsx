@@ -415,22 +415,22 @@ export const SizeGuideModal: React.FC<SizeGuideModalProps> = ({
                   <thead className="bg-[#FAF8F4] border-b border-[#E6E1D7] text-[#555047] uppercase tracking-wider text-[11px]">
                     <tr>
                       <th className="py-3 px-4 font-semibold">Size</th>
-                      {product.measurementsCm['M']?.chest > 0 && <th className="py-3 px-4 font-semibold">Chest (Pit-to-Pit x2)</th>}
-                      {product.measurementsCm['M']?.shoulder && <th className="py-3 px-4 font-semibold">Shoulder Width</th>}
-                      {product.measurementsCm['M']?.waist && <th className="py-3 px-4 font-semibold">Waistband (Flat x2)</th>}
-                      {product.measurementsCm['M']?.inseam && <th className="py-3 px-4 font-semibold">Inseam</th>}
+                      {Boolean(product?.measurementsCm?.['M']?.chest && product.measurementsCm['M'].chest > 0) && <th className="py-3 px-4 font-semibold">Chest (Pit-to-Pit x2)</th>}
+                      {Boolean(product?.measurementsCm?.['M']?.shoulder) && <th className="py-3 px-4 font-semibold">Shoulder Width</th>}
+                      {Boolean(product?.measurementsCm?.['M']?.waist) && <th className="py-3 px-4 font-semibold">Waistband (Flat x2)</th>}
+                      {Boolean(product?.measurementsCm?.['M']?.inseam) && <th className="py-3 px-4 font-semibold">Inseam</th>}
                       <th className="py-3 px-4 font-semibold">Back Length</th>
                       <th className="py-3 px-4 font-semibold text-right">Action</th>
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-[#F0ECE4] text-[#2D2A26]">
-                    {Object.entries(product.measurementsCm).map(([sz, m]) => (
+                    {Object.entries(product?.measurementsCm || {}).map(([sz, m]) => (
                       <tr key={sz} className="hover:bg-[#F9F7F2] transition-colors">
                         <td className="py-3 px-4 font-bold">{sz}</td>
-                        {m.chest > 0 && <td className="py-3 px-4 font-mono tabular-nums">{toUnit(m.chest)}</td>}
-                        {m.shoulder && <td className="py-3 px-4 font-mono tabular-nums">{toUnit(m.shoulder)}</td>}
-                        {m.waist && <td className="py-3 px-4 font-mono tabular-nums">{toUnit(m.waist)}</td>}
-                        {m.inseam && <td className="py-3 px-4 font-mono tabular-nums">{toUnit(m.inseam)}</td>}
+                        {Boolean(m.chest && m.chest > 0) && <td className="py-3 px-4 font-mono tabular-nums">{toUnit(m.chest)}</td>}
+                        {m.shoulder !== undefined && <td className="py-3 px-4 font-mono tabular-nums">{toUnit(m.shoulder)}</td>}
+                        {m.waist !== undefined && <td className="py-3 px-4 font-mono tabular-nums">{toUnit(m.waist)}</td>}
+                        {m.inseam !== undefined && <td className="py-3 px-4 font-mono tabular-nums">{toUnit(m.inseam)}</td>}
                         <td className="py-3 px-4 font-mono tabular-nums">{toUnit(m.length)}</td>
                         <td className="py-3 px-4 text-right">
                           {onSelectSize && (

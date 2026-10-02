@@ -40,6 +40,7 @@ export default function App() {
   const [searchOpen, setSearchOpen] = useState(false);
   const [wishlistOpen, setWishlistOpen] = useState(false);
   const [orderConfirmation, setOrderConfirmation] = useState<OrderConfirmation | null>(null);
+  const [newsletterSubscribed, setNewsletterSubscribed] = useState(false);
 
   // Cart & Wishlist state with local persistence
   const [cart, setCart] = useState<CartItem[]>(() => {
@@ -651,20 +652,33 @@ export default function App() {
               <p className="text-[#6E6A61] text-[11px] leading-relaxed">
                 Receive our quarterly textile carbon harvest reports and early notifications on limited botanical dye runs.
               </p>
-              <form onSubmit={(e) => { e.preventDefault(); alert('Thank you for subscribing to our circularity dispatch.'); }} className="flex gap-2">
-                <input
-                  type="email"
-                  required
-                  placeholder="name@domain.com"
-                  className="px-3 py-2 bg-white border border-[#E0DBD0] rounded-lg text-xs flex-1 focus:outline-none focus:border-[#2C3E2D]"
-                />
-                <button
-                  type="submit"
-                  className="px-3 py-2 bg-[#1A1A1A] text-white rounded-lg text-xs font-medium hover:bg-[#333333] transition-colors"
+              {newsletterSubscribed ? (
+                <div className="p-2.5 rounded-lg bg-[#EAF2EB] text-[#2C3E2D] text-xs font-medium flex items-center gap-1.5">
+                  <Check className="w-3.5 h-3.5" />
+                  <span>Subscribed to circularity dispatch.</span>
+                </div>
+              ) : (
+                <form
+                  onSubmit={(e) => {
+                    e.preventDefault();
+                    setNewsletterSubscribed(true);
+                  }}
+                  className="flex gap-2"
                 >
-                  Join
-                </button>
-              </form>
+                  <input
+                    type="email"
+                    required
+                    placeholder="name@domain.com"
+                    className="px-3 py-2 bg-white border border-[#E0DBD0] rounded-lg text-xs flex-1 focus:outline-none focus:border-[#2C3E2D]"
+                  />
+                  <button
+                    type="submit"
+                    className="px-3 py-2 bg-[#1A1A1A] text-white rounded-lg text-xs font-medium hover:bg-[#333333] transition-colors"
+                  >
+                    Join
+                  </button>
+                </form>
+              )}
             </div>
           </div>
 
